@@ -18,7 +18,9 @@ export default class IndexModel {
 	getData(){
 		return new Promise((resolve, reject) => {
 			setTimeout(()=> {
-				resolve('Hello Koa');
+				resolve({
+					title: 'hello world'
+				});
 			}, 2000);
 		})
 	}

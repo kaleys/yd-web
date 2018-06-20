@@ -4,7 +4,8 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlAfterWebpackPlugin = require('./config/htmlAfterWebpackPlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 //返回匹配指定模式的文件名或者目录，php，python等语言都有这个函数
 const glob = require('glob');
 const { resolve, join, basename } = require("path");
@@ -40,9 +41,35 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      
+      {
+        test: /\.css$/,
+        use: [
+          _isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              minimize: _isProd,
+              sourceMap: !_isProd
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: !_isProd,
+              plugins: () => [
+                require('postcss-cssnext')()
+                // require('postcss-preset-env')({
+                //   // browsers: 'last 2 versions'
+                // })
+              ]
+            }
+          }
+        ] 
+      }
     ]
   },
+  devtool: '#eval-source-map',
   // 是否开启监控模式，如果使用WDS默认就是开启的
   watch: !_isProd,
   watchOptions: {
@@ -61,9 +88,10 @@ let webpackConfig = {
           minChunks: 2,
           // minSize: 0
         },
+        // 这段打包出来会生成一个style.js文件，没搞懂。多入口时用
         // styles: {
         //   name: 'styles',
-        //   test: '\.css$',
+        //   test: /\.css$/,
         //   chunks: 'all',
         //   enforce: true
         // }
@@ -80,6 +108,10 @@ let webpackConfig = {
     }
   },
   plugins: [
+    new CleanWebpackPlugin(['dist/views', 'dist/assets', 'dist/widgets'], {
+      // root: rootPath,
+      verbose: true,
+    }),
     ..._plugins,
     new HtmlAfterWebpackPlugin()
   ]

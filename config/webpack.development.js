@@ -1,23 +1,22 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require("path");
+const rootPath = path.join(__dirname, '..');
 module.exports =  {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, "../" , "src/webapp/views/common/layout.html"),
-        to: '../views/common/layout.html'
+        from: rootPath + "/src/webapp/views/common/layout.html",
+        to: '../views/common/layout.html',
       },
       {
-        from: path.join(__dirname, '../', 'src/webapp/widgets/'),
+        from: rootPath + '/src/webapp/widgets/',
         to: '../widgets',
         test: /\.html$/
       }
     ], {
       copyUnmodified: true,
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].css'
+      ignore: ["*.js", "*.css"]
     })
   ]
 }

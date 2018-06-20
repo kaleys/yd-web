@@ -11,7 +11,6 @@ body, div, h1, h2, h3, h4, p, ul {
 body {
   color: var(--c-font);
 }
-
 a {
   color: var(--c-font);
   &:hover {
@@ -21,7 +20,10 @@ a {
 .kaleys-header {
   height: var(--header-height);
   border: 1px solid var(--c-border);
-  line-height: var(--header-header);
+  line-height: var(--header-height);
+  & .header-link__wrapper {
+    float:right;
+  }
   & .header-link {
     display: inline-block;
     font-size: 16px;

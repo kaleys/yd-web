@@ -19,7 +19,6 @@ app.context.render = co.wrap(render({
 log4js.configure(config.log);
 const logger = log4js.getLogger('cheese');
 
-//aaa
 errorHandler.error(app, logger);
 controllerInit.getAllRoutes(app, router);
 app.use(server(config.staticDir));

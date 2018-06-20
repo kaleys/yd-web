@@ -4,6 +4,6 @@ const model =  new IndexModel();
 export default {
 	indexAction: async (ctx, next) => {
 		const data = await model.getData();
-		ctx.body = data;
+		ctx.body = await ctx.render('index/pages/index', data);
 	}
 }

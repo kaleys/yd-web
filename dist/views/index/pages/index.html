@@ -1,1 +1,13 @@
-{% extends './../../common/layout.html' %} {% block title %} 首页 {% endblock %} {% block head %} {% endblock %} {% block content %} {% include "./../../../widgets/header/header.html" %}<script src="/scripts/runtime.54de0.js"></script><script src="/scripts/index.54de0.js"></script> {% endblock %}
+{% extends './../../common/layout.html' %}
+{% block title %} 首页 {% endblock %}
+
+{% block head %}
+  
+{% endblock %}
+
+{% block content %}
+  {% include "./../../../widgets/header/header.html" %}
+  <div>哈哈这里是正中间</div>
+  {% include "./../../../widgets/footer/footer.html" %}
+  <script src="/scripts/runtime.boundle.js"></script><script src="/scripts/index.boundle.js"></script>
+{% endblock %}

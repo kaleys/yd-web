@@ -12,7 +12,8 @@
     "server:dev": "cross-env NODE_ENV=development gulp",
     "server:prod": "cross-env NODE_ENV=production gulp",
     "client:dev": "webpack --mode=development",
-    "client:prod": "webpack --mode=production"
+    "client:prod": "webpack --mode=production",
+    "dev": "webpack --mode=development & cross-env NODE_ENV=development gulp & cross-env NODE_ENV=development supervisor ./dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -46,6 +47,7 @@
     "mini-css-extract-plugin": "^0.4.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-loader": "^2.1.5",
+    "postcss-preset-env": "^5.1.0",
     "rollup-plugin-replace": "^2.0.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.11.1",

@@ -1,0 +1,13 @@
+:root {
+  --footer-height: 60px;
+  --footer-font-size: 24px;
+}
+.test-footer {
+  height: var(--footer-height);
+  box-shadow: 0 0 8px rgba(0,0,0,.3) inset;
+  text-align: center;
+
+  & h1 {
+    font-size:var(--footer-font-size);
+  }
+}
